@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :address
       t.string :phone
       t.boolean :is_cook?
+      t.boolean :admin?
 
       t.timestamps
     end

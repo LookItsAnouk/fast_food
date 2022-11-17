@@ -19,11 +19,17 @@ users = User.all
 
 # ---------------------------------------------
 
-# Users
+# Users /Admin User
+
 
  PASSWORD = '123456789'
-
-
+ 
+super_user = User.create(
+    first_name: "Admin",
+    last_name: "User",
+    email: "admin@admin.com",
+    password: PASSWORD
+ )
 
 10.times do
 
@@ -39,7 +45,7 @@ users = User.all
         address: address,
         phone: phone,
         email: "#{first_name}@#{last_name}.com",
-        password: PASSWORD,
+        password_digest: PASSWORD,
         is_cook?: false
 
     )
@@ -61,7 +67,7 @@ end
         address: address,
         phone: phone,
         email: "#{first_name}@#{last_name}.com",
-        password: PASSWORD,
+        password_digest: PASSWORD,
         is_cook?: true
     )
     
