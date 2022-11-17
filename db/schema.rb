@@ -43,7 +43,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_213847) do
     t.text "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "price"
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
