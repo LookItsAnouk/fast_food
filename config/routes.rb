@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :users
+  devise_for :users
+  resources :users, :except => [:create]
+  resources :orders
+  # resources :users
   resources :recipes
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
