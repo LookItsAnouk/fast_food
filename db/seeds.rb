@@ -1,23 +1,15 @@
 Recipe.destroy_all
-# Review.destroy_all
+Review.destroy_all
 # Rating.destroy_all
 # Order.destroy_all
 User.destroy_all
 
 
 recipes = Recipe.all
-# reviews = Review.all
+reviews = Review.all
 # ratings = Rating.all
 # orders = Order.all
 users = User.all
-
-
-
-
-
-# Reviews
-
-# ---------------------------------------------
 
 # Ratings
 
@@ -77,7 +69,7 @@ end
 
 # ---------------------------------------------
 
-# Recipes
+# Recipes and Reviews
 
 50.times do
 
@@ -93,15 +85,21 @@ r = Recipe.create(
     created_at: created_at,
     updated_at: created_at,
     user: users.sample
-)
-puts r.errors.full_messages
+ )
+    if r.valid?
+        rand(1..5).times do
+            Review.create(body: Faker::Hipster.paragraphs, recipe: r, user: users.sample)
+        end
+
+    end
+
 end
 
 # ---------------------------------------------
 
 
 puts Cowsay.say("Generated #{recipes.count} recipes.", :elephant)
-# puts Cowsay.say("Generated #{reviews.count} comments.", :frogs)
+puts Cowsay.say("Generated #{reviews.count} reviews.", :frogs)
 # puts Cowsay.say("Generated #{ratings.count} users.", :dragon)
 # puts Cowsay.say("Generated #{orders.count} users.", :Kitty)
 puts Cowsay.say("Generated #{users.count} users.", :Koala)
