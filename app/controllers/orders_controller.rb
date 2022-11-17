@@ -46,6 +46,18 @@ class OrdersController < ApplicationController
        redirect_to orders_url, notice: "Order was successfully destroyed." 
   end
 
+  def approve
+      @order.update_attribute(:pending?, false)
+      @order.update_attribute(:approved?, true)
+      redirect_to admin_path,  notice: "Order was Approved."
+  end
+
+  def deny
+    @order.update_attribute(:pending?, false)
+    @order.update_attribute(:approved?, false)
+    redirect_to admin_path,  notice: "Order was denied."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -56,4 +68,6 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:payment_type, :delivery_type, :delivery_date)
     end
+
+   
 end

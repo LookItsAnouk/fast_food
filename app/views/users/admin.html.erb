@@ -47,9 +47,9 @@
                 <%= review.body %>
                 Created <%= time_ago_in_words(review.created_at) %> ago 
                 <% if review.approved? %>
-                <p style = "color: green"> Approved <p>
+                <p style = "color: green"> Review Approved <p>
                 <% else %>
-                <p style = "color: red"> Denied <p>
+                <p style = "color: red"> Review Denied <p>
             <% end %>
         <% end %>  
     <% end %>  
