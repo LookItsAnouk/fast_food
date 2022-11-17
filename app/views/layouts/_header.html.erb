@@ -1,17 +1,31 @@
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Fast Food</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<div class="container-fluid" id="banner">
+    <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid d-flex p-0" >
+    
+        <div class="container">
+            <a class="m-3" alt="brand-logo" href="<%= root_path %>">
+              <%= image_tag "https://cdn-icons-png.flaticon.com/512/948/948036.png", id: 'logo', style:"width: 3rem"%> 
+              </a>
+              <a class="navbar-brand fw-bold fw-bold" href="<%= root_path%>">Fast Food</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <form class="form-inline my-2 my-lg-0 d-flex flex-row" role="search">
+         <input class="form-control mr-sm-2 mx-2" type="search" placeholder="Search meal or cook" aria-label="Search", width="15em">
+         <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+       </form>
+    </div>
+
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="btn btn-light-outline nav-link text-dark fw-bold" href="/">Home</a>
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Recipes
                 </a>
                 <ul class="dropdown-menu">
@@ -21,7 +35,7 @@
             </li>
             <%# if(user_signed_in?) %>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Profile
                     </a>
                     <ul class="dropdown-menu">
@@ -34,17 +48,18 @@
                 </li>
             <%# else %>
                 <li class="nav-item">
-                    <%#= link_to 'Sign In', new_session_path, class: "nav-link active nav_blue_line"%>
+                   <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_user_session_path%>">Sign In</a> <%#= link_to 'Sign In', new_session_path, class: "nav-link active nav_blue_line"%>
                 </li>
-                <li class="nav-item">
-                    <%= link_to 'Sign Up', new_user_path, class: "nav-link"%>
+                <li class="nav-item mx-2">
+                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_user_registration_path %>">Sign Up </a>
                 </li>
            <%# end %>
         </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+        </div>
+        </nav>
+</div>
+
+    
+      
+        
+    
