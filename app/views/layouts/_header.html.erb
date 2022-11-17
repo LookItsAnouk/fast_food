@@ -13,6 +13,12 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <p> <% flash.each do |type, message| %>
+                <div class="alert alert-info" role=alert >
+                <%= type + "--" + message %>
+                </div>
+            <% end %> <p>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="form-inline my-2 my-lg-0 d-flex flex-row" role="search">
          <input class="form-control mr-sm-2 mx-2" type="search" placeholder="Search meal or cook" aria-label="Search", width="15em">
@@ -20,11 +26,7 @@
        </form>
     </div>
 
-<p> <% flash.each do |type, message| %>
-                <div class="alert alert-info" role=alert >
-                <%= type + "--" + message %>
-                </div>
-            <% end %> <p>
+
 
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -42,21 +44,17 @@
                 </ul>
             </li>
             <% if(user_signed_in?) %>
-
                 <li class="nav-item">
-
-
                     <a class="btn btn-light-outline nav-link text-dark fw-bold" href="users/admin">Profile</a>
                 </li>
                 <li class="nav-item">
                     <div class="nav-link">
                     <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %></div>
-
                 </li>
             <% else %>
                 <li class="nav-item">
 
-                   <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_user_path%>">Sign In</a> 
+                   <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_session_path%>">Sign In</a> 
                    <%#= link_to 'Sign In', new_session_path, class: "nav-link active nav_blue_line"%>
 
                 </li>
