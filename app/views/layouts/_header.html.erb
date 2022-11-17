@@ -20,6 +20,12 @@
        </form>
     </div>
 
+<p> <% flash.each do |type, message| %>
+                <div class="alert alert-info" role=alert >
+                <%= type + "--" + message %>
+                </div>
+            <% end %> <p>
+
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a class="btn btn-light-outline nav-link text-dark fw-bold" href="/">Home</a>
@@ -35,23 +41,25 @@
                     <li><a class="dropdown-item" href="/recipes/new">Add New</a></li>
                 </ul>
             </li>
-            <%# if(user_signed_in?) %>
+            <% if(user_signed_in?) %>
                 <li class="nav-item">
 
                     <a class="btn btn-light-outline nav-link text-dark fw-bold" href="users/admin">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <div class="nav-link"><%#= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %></div>
+                    <div class="nav-link">
+                    <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %></div>
                 </li>
-            <%# else %>
+            <% else %>
                 <li class="nav-item">
 
-                   <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_user_path%>">Sign In</a> <%#= link_to 'Sign In', new_session_path, class: "nav-link active nav_blue_line"%>
+                   <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_user_path%>">Sign In</a> 
+                   <%#= link_to 'Sign In', new_session_path, class: "nav-link active nav_blue_line"%>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_user_path %>">Sign Up </a>
                 </li>
-           <%# end %>
+           <% end %>
         </ul>
         </div>
         </nav>
