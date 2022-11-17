@@ -1,23 +1,21 @@
 Recipe.destroy_all
 Review.destroy_all
 # Rating.destroy_all
-# Order.destroy_all
+Order.destroy_all
 User.destroy_all
 
 
 recipes = Recipe.all
 reviews = Review.all
 # ratings = Rating.all
-# orders = Order.all
+orders = Order.all
 users = User.all
 
 # Ratings
 
 # ---------------------------------------------
 
-# Orders
 
-# ---------------------------------------------
 
 # Users
 
@@ -25,7 +23,7 @@ users = User.all
 
 
 
-10.times do
+30.times do
 
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
@@ -47,7 +45,7 @@ users = User.all
 
 end
 
-10.times do
+20.times do
 
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
@@ -73,7 +71,7 @@ end
 
 50.times do
 
-created_at = Faker::Date.backward(days: 365 * 5)
+created_at = Faker::Date.between(from: 30.days.ago, to: Date.today)
 price = rand(10.50..20.50)
 
 r = Recipe.create(
@@ -93,13 +91,38 @@ r = Recipe.create(
 
     end
 
+    if r.valid?
+
+        delivery_date = Faker::Date.between(from: '2022-11-30', to: '2022-12-05')
+        created_at = Faker::Date.between(from: 5.days.ago, to: Date.today)
+
+        rand(1..10).times do
+            Order.create(
+                payment_type: 'cash',
+                delivery_type: 'pickup',
+                delivery_date: delivery_date,
+                created_at: created_at,
+                updated_at: created_at,
+                user: users.sample,
+                recipe: r,
+                pending?: false,
+                approved?: true
+            )
+        end
+    end
+
 end
 
 # ---------------------------------------------
 
+# Orders
+
+
+
+# ---------------------------------------------
 
 puts Cowsay.say("Generated #{recipes.count} recipes.", :elephant)
 puts Cowsay.say("Generated #{reviews.count} reviews.", :frogs)
 # puts Cowsay.say("Generated #{ratings.count} users.", :dragon)
-# puts Cowsay.say("Generated #{orders.count} users.", :Kitty)
+puts Cowsay.say("Generated #{orders.count} orders.", :Kitty)
 puts Cowsay.say("Generated #{users.count} users.", :Koala)
