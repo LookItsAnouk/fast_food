@@ -11,6 +11,7 @@ gem "faker"
 
 #authorization
 
+gem 'cancancan'
 
 #auth
 # gem 'devise', '~> 4.8', '>= 4.8.1'
