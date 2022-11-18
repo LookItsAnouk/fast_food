@@ -74,7 +74,7 @@ class Ability
   
 
     can :destroy, Rating do |rating|
-      review.user == user || recipe.user
+      rating.user == user || recipe.user
     end
 
     can :destroy, Review do |review|
