@@ -11,6 +11,7 @@
         <% end %>
     <% end %>
     <%# orders %>
+    <p>Orders </p>
     <% @user.orders.each do |order| %>
         <% if order.pending? %>
             <%= order.body %>
@@ -20,14 +21,15 @@
         <% end %>
     <% end %>
     <%# all meals/edit - here or just on cook show page with edit visible to just the cook? %>
-    <% @user.meals.each do |meal| %>
-            <% if meal.pending? %>
-                <%= meal.body %>
-                Created <%= time_ago_in_words(meal.created_at) %> ago 
-                <% if can? :crud, meal%>
-                    <%= button_to "Edit", edit_meal_path(@meal), method: :get %>%
+    <p>Meals </p>
+    <% @user.recipes.each do |r| %>
+                <%= r.description %>
+                <%= r.ingredients %>
+                Created <%= time_ago_in_words(r.created_at) %> ago 
+                <% if can? :crud, r%>
+                    <%= button_to "Edit", edit_recipe_path(@r.id), method: :get %>%
                 <% end %>
-            <% end %>
+             
     <% end %>
 <% else %>
     <%# for non-cooks %>
