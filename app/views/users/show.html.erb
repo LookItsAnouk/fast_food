@@ -6,9 +6,37 @@
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
-
 <h2 class="text-uppercase text-center mb-3">Showing Cook</h2>
+
 <%= render @user %>
+
+<%# @ratings.each do |rating| %>
+
+    <%# if cook.user_id == @user %>
+    <p> Chef Rating: 5 </p>
+     <%#= @rating.user_id %>
+    <br>
+    <%# end %>
+  <%# end %>
+
+
+  <% @recipes.each do |recipe| %>
+
+    <% if recipe.user == @user%>
+     <%= render recipe %>
+
+      <small>
+        Created by Chef <%= recipe.user.last_name %>
+      </small>
+
+    <br>
+    <% end %>
+  <% end %>
+
+<div>
+  <%= link_to "Back to Chefs", users_path %>
+
+
 
                 </div>
           </div>
@@ -17,6 +45,7 @@
     </div>
   </div>
 </section>
+
 
 
 <div class="d-flex justify-content-center my-4">
