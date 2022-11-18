@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   #resources :user_signed_in
-  resources :users 
+
+  resources :users do
+    resources :cooks
+  end
+
   resource :session, only: [:new, :destroy, :create]
 
   resources :recipes do
@@ -19,5 +23,8 @@ Rails.application.routes.draw do
   get 'users/:id/dashboard', to: 'users#dashboard', as: :dashboard_user
 
   patch 'users/:id/review/:id/approve', to: 'users#approve', as: :approve
+
+  get 'search', to: 'searches#show'
+
 
 end

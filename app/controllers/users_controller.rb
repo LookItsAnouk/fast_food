@@ -4,11 +4,14 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
+    @cooks = Cook.all
+    
   end
 
   # GET /users/1
   def show
-    @user = current_user
+    
+    @cooks = Cook.all
   end
 
   def dashboard
@@ -24,7 +27,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    # @user = current_user
+    @users = User.all
+     @user = current_user
   end
 
 

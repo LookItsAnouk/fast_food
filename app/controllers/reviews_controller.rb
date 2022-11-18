@@ -41,12 +41,16 @@ class ReviewsController < ApplicationController
     
       # PATCH/PUT /orders/1
       def update
-        if @review.update(review_params)
-        redirect_to review_url(@review), notice: "review was successfully updated." 
-        
+        if can? :crud, @review
+          if @review.update(review_params)
+          redirect_to review_url(@review), notice: "review was successfully updated." 
         else
-          render :edit, status: :unprocessable_entity 
+          redirect_to review_url(@review), notice: "Not authorized to edit this review" 
+
+          else
+            render :edit, status: :unprocessable_entity 
         end
+          end
       end
 
     def accept

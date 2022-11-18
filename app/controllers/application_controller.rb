@@ -1,4 +1,11 @@
 class ApplicationController < ActionController::Base
+    
+    before_action :set_query
+
+    def set_query
+        @q = Recipe.ransack(params[:q])
+    end
+
     def user_signed_in?
         current_user.present?
     end
