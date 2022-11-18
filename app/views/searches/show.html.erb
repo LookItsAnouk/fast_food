@@ -1,0 +1,20 @@
+<div class="container">
+    <h1 class="text-center my-5"><%= pluralize(@recipes.count, "Result") %> with "<%=@keyword%>"</h1>
+
+<div class="flex-container mx-5 d-flex justify-content-center mb-3 ">
+
+    <% @recipes.each do |recipes| %>
+        <div class="item-container ">
+                <div class="card mb-3 index-card">
+                    <%= image_tag recipes.image_url, class:"card-img-top" %>
+                    <div class="card-body">
+                        <div class="mb-1">
+                        <%= link_to recipes.title, recipe_path(recipes), class:"title-list-item"%>
+                        </div>
+                        
+                    </div>
+                </div>
+        </div>
+    <% end %>  
+</div>
+</div>

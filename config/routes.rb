@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   get 'users/:id/dashboard', to: 'users#dashboard', as: :dashboard_user
 
-
+  get 'search', to: 'searches#show'
 
 end
