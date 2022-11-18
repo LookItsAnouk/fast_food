@@ -80,6 +80,6 @@ class UsersController < ApplicationController
         :password_confirmation, 
         :address, 
         :phone, 
-        :is_cook?)
+        :is_cook)
     end
 end
