@@ -1,6 +1,18 @@
-<h1>New recipe</h1>
-
-<%= render "form", recipe: @recipe %>
+<section class="" style="background: url(https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <h3 class="text-uppercase text-center mb-3">Create a Meal</h3>
+                <%= render "form", recipe: @recipe %>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <br>
 

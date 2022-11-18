@@ -1,6 +1,7 @@
+
 <%= form_with(model: recipe) do |form| %>
   <% if recipe.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger">
       <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
 
       <ul>
@@ -11,24 +12,24 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
+  <div class="form-outline mb-4">
+    <%= form.label :title, class:"form-control"%>
     <%= form.text_field :title %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
+  <div class="form-outline mb-4">
+    <%= form.label :image_url, class:"form-control"%>
+    <%= form.text_area :image_url %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :description, class:"form-control"%>
     <%= form.text_area :description %>
   </div>
 
-  <div>
-    <%= form.label :ingredients, style: "display: block" %>
+  <div class="form-outline mb-4">
+    <%= form.label :ingredients, class:"form-control"%>
     <%= form.text_area :ingredients %>
-  </div>
-
-  <div>
-    <%= form.label :image_url, style: "display: block" %>
-    <%= form.text_area :image_url %>
   </div>
 
   <div>
