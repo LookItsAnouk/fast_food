@@ -1,9 +1,25 @@
-<h1>New recipe</h1>
-
-<%= render "form", recipe: @recipe %>
+<section class="bg-image"
+  style="background-image: url('https://th.bing.com/th/id/OIP.d6s9jZ3ee_EC5de2WcqPwwHaE8?pid=ImgDet&rs=1');" >
+<div class="mask d-flex align-items-center h-100 gradient-custom-3 pb-0">
+    <div class="container h-100 pb-0">
+      <div class="container row d-flex justify-content-center align-items-center h-100 pb-0">
+        <div class="container col-12 col-md-9 col-lg-7 col-xl-6 pb-0">
+          <div class="card m-4" style="">
+            <div class="card-body px-5 pt-5">
+               
+             <h2 class="text-uppercase text-center mb-5">Create a Meal</h2>
+                <%= render "form", recipe: @recipe %>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <br>
 
-<div>
-  <%= link_to "Back to recipes", recipes_path %>
+<div class="d-flex justify-content-center my-4">
+  <a class="btn btn-dark text-uppercase p-3" href="<%= recipes_path %>"id="sign-up-btn">return to recipes</a>
 </div>
+
