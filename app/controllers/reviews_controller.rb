@@ -19,17 +19,19 @@ class ReviewsController < ApplicationController
     
       # GET /orders/1/edit
       def edit
+        
       end
     
       # POST /orders
       def create
         @review = Review.new(review_params)
+        
         @review.recipe = @recipe
         @review.user = current_user
   
         if @review.save
           flash[:success] = "Review successfully created"
-          redirect_to recipe_url(@recipe), notice: "review was successfully created." 
+          redirect_to recipe_url(@recipe)
     
         else
           flash[:alert] = "Please Add Text"

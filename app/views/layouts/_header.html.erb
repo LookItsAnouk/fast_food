@@ -38,10 +38,13 @@
                     <li><a class="dropdown-item" href="/recipes/new">Add New</a></li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <%= link_to "Cook", dashboard_user_path(current_user), class: "btn btn-light-outline nav-link text-dark fw-bold"%>
+            </li>
             <% if(user_signed_in?) %>
                 <li class="nav-item">
                     <%# <a class="btn btn-light-outline nav-link text-dark fw-bold" href="users/dashboard_users">Profile</a> %>
-                    <%= link_to "Profile", dashboard_user_path(current_user)%>
+                    <%= link_to "Profile", dashboard_user_path(current_user), class: "btn btn-light-outline nav-link text-dark fw-bold"%>
                 </li>
                 <li class="nav-item">
                     <div class="nav-link">
