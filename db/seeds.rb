@@ -3,26 +3,8 @@ Recipe.destroy_all
 Review.destroy_all
 Rating.destroy_all
 Order.destroy_all
+Cook.destroy_all
 
-
-
-recipes = Recipe.all
-reviews = Review.all
-ratings = Rating.all
-orders = Order.all
-users = User.all
-cooks = Cook.all
-
-
-# Ratings
-
-# ---------------------------------------------
-
-# Orders
-
-# ---------------------------------------------
-
-# Users /Admin User
 
 
  PASSWORD = '123456789'
@@ -34,7 +16,7 @@ super_user = User.create(
     password: PASSWORD
  )
 
-10.times do
+30.times do
 
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
@@ -48,14 +30,15 @@ super_user = User.create(
         address: address,
         phone: phone,
         email: "#{first_name}@#{last_name}.com",
-
         password: PASSWORD,
-        is_cook?: false
+        is_cook: false
     )
     
 end
 
-20.times do
+users = User.all
+
+10.times do
 
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
@@ -80,25 +63,26 @@ end
             created_at: created_at,
             updated_at: created_at
         )
-        if c.valid?
-            rand(1..5) do
-                score = rand(1..5)
-                user = users.sample
-                created_at = Faker::Date.between(from: 5.days.ago, to: Date.today)
+        # if c.valid?
+        #     rand(1..5) do
+        #         score = rand(1..5)
+        #         user = users.sample
+        #         created_at = Faker::Date.between(from: 5.days.ago, to: Date.today)
 
-                r = Rating.create(
-                    rating: score,
-                    user_id: user.id,
-                    created_at: created_at,
-                    updated_at: updated_at,
-                    cooks_id: c.id
-                )
-                puts r.errors.full_messages
-            end
-        end
+        #         r = Rating.create(
+        #             rating: score,
+        #             user_id: user.id,
+        #             created_at: created_at,
+        #             updated_at: updated_at,
+        #             cook_id: c.id
+        #         )
+        #         puts r.errors.full_messages
+        #     end
+        # end
     end
 end
-
+cooks = Cook.all
+# ratings = Rating.all
 # ---------------------------------------------
 
 # Recipes, Reviews and Orders
@@ -139,18 +123,21 @@ r = Recipe.create(
                 updated_at: created_at,
                 user: users.sample,
                 recipe: r,
-                pending?: false,
-                approved?: true
+                pending: false,
+                approved: true
             )
         end
     end
 
 end
 
+orders = Order.all
+recipes = Recipe.all
+reviews = Review.all
 
 puts Cowsay.say("Generated #{recipes.count} recipes.", :elephant)
 puts Cowsay.say("Generated #{reviews.count} reviews.", :frogs)
 puts Cowsay.say("Generated #{cooks.count} cooks.", :dragon)
-puts Cowsay.say("Generated #{ratings.count} ratings.", :cow)
+#puts Cowsay.say("Generated #{ratings.count} ratings.", :cow)
 puts Cowsay.say("Generated #{orders.count} orders.", :Kitty)
 puts Cowsay.say("Generated #{users.count} users.", :Koala)
