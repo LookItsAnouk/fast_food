@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_user!, only:[:edit, :update, :destroy]
 
   # GET /orders
   def index
@@ -67,6 +69,10 @@ class OrdersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def order_params
       params.require(:order).permit(:payment_type, :delivery_type, :delivery_date)
+    end
+
+    def authorize_user!
+      redirect_to root_path, alert: "Not authorized!" unless can?(:crud, @order)
     end
 
    

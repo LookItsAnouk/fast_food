@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
     before_action :set_review, only: %i[ show edit update destroy ]
+    before_action :authenticate_user!, except: [:index, :show]
+    before_action :authorize_user!, only:[:edit, :update, :destroy]
 
     def index
         @reviews = Review.all
@@ -63,4 +65,7 @@ private
       params.require(:review).permit(:title, :body)
     end
    
+    def authorize_user!
+      redirect_to root_path, alert: "Not authorized!" unless can?(:crud, @review)
+    end
 end
