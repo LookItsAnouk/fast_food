@@ -1,13 +1,33 @@
 <p style="color: green"><%= notice %></p>
 
 
-<p>showing cooks</p>
 <%= render @user %>
 
+<%# @ratings.each do |rating| %>
+
+    <%# if cook.user_id == @user %>
+    <p> Chef Rating: 5 </p>
+     <%#= @rating.user_id %>
+    <br>
+    <%# end %>
+  <%# end %>
+
+
+  <% @recipes.each do |recipe| %>
+
+    <% if recipe.user == @user%>
+     <%= render recipe %>
+
+      <small>
+        Created by Chef <%= recipe.user.last_name %>
+      </small>
+
+    <br>
+    <% end %>
+  <% end %>
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+  <%= link_to "Back to Chefs", users_path %>
 
 
 </div>

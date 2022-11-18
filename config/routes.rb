@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   #resources :user_signed_in
   resources :users do
     resources :cooks
+    resources :ratings
   end
 
   resource :session, only: [:new, :destroy, :create]
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :destroy]
   end
 
-  resources :ratings
+  # resources :ratings
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

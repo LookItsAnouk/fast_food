@@ -10,8 +10,9 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    
     @cooks = Cook.all
+    @recipes = Recipe.all
+    @ratings = Rating.all
   end
 
   def dashboard
