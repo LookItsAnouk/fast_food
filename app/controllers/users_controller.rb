@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    # @user = current_user
+    @user = current_user
   end
 
   # GET /users/new
@@ -21,26 +21,26 @@ class UsersController < ApplicationController
     # @user = current_user
   end
 
-  # POST /users
-  def create
-    @user = User.new(user_params)
-      if @user.save
-        redirect_to user_url(@user), notice: "User was successfully created." 
-      else
-        render :new, status: :unprocessable_entity 
-      end
-  end
-
-# If that above gives errors, try the below:
+  # # POST /users
   # def create
-  #   @user = User.new user_params
-  #   if @user.save
-  #     session[:user_id] = @user.id
-  #     redirect_to root_path
-  #   else
-  #     render :new
-  #   end
+  #   @user = User.new(user_params)
+  #     if @user.save
+  #       redirect_to user_url(@user), notice: "User was successfully created." 
+  #     else
+  #       render :new, status: :unprocessable_entity 
+  #     end
   # end
+
+#If that above gives errors, try the below:
+  def create
+    @user = User.new user_params
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
 
   # PATCH/PUT /users/1
   def update
@@ -67,6 +67,14 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :address, :phone, :is_cook?)
+      params.require(:user).permit(
+        :first_name, 
+        :last_name, 
+        :email, 
+        :password, 
+        :password_confirmation, 
+        :address, 
+        :phone, 
+        :is_cook?)
     end
 end
