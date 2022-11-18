@@ -4,10 +4,12 @@ class RecipesController < ApplicationController
   # GET /recipes
   def index
     @recipes = Recipe.all
+    @review = Review.new
   end
 
   # GET /recipes/1
   def show
+    @review = Review.new
   end
 
   # GET /recipes/new
