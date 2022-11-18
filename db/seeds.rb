@@ -103,7 +103,7 @@ end
 
 # Recipes, Reviews and Orders
 
-50.times do
+50.times do |n|
 
 created_at = Faker::Date.between(from: 30.days.ago, to: Date.today)
 price = rand(10.50..20.50)
@@ -112,7 +112,7 @@ r = Recipe.create(
     title:Faker::Food.dish,
     ingredients: Faker::Food.ingredient,
     description: Faker::Food.description,
-    image_url: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+    image_url: "https://loremflickr.com/640/640/meals?random=#{n + 1}",
     price: price,
     created_at: created_at,
     updated_at: created_at,
