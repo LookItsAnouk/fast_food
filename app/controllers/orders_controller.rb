@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_user!, only:[:edit, :update, :destroy]
 
   # GET /orders
   def index
@@ -46,6 +48,18 @@ class OrdersController < ApplicationController
        redirect_to orders_url, notice: "Order was successfully destroyed." 
   end
 
+  def approve
+      @order.update_attribute(:pending?, false)
+      @order.update_attribute(:approved?, true)
+      redirect_to admin_path,  notice: "Order was Approved."
+  end
+
+  def deny
+    @order.update_attribute(:pending?, false)
+    @order.update_attribute(:approved?, false)
+    redirect_to admin_path,  notice: "Order was denied."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -56,4 +70,10 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:payment_type, :delivery_type, :delivery_date)
     end
+
+    def authorize_user!
+      redirect_to root_path, alert: "Not authorized!" unless can?(:crud, @order)
+    end
+
+   
 end
