@@ -1,38 +1,40 @@
   <%# for cooks %>
-<% if user_signed_in? && user.is_cook? %>
+<% if user_signed_in? && @user.is_cook? %>
     <%# pending reviews %>
-    <h3>Pending Reviews <h3>
+    <h3>Pending Reviews - Cook <h3>
     <% @user.reviews.each do |review| %>
         <% if review.pending? %>
             <%= review.body %>
             Created <%= time_ago_in_words(review.created_at) %> ago 
-            <%= button_to 'Approve',  user_review_path(@user.id, review.id), method: :approve, data: {confirm: "Are you sure"} %>
-            <%= button_to 'Deny',  user_review_path(@user.id, review.id), method: :deny, data: {confirm: "Are you sure"}  %>
+            <%= button_to 'Approve', user_review_path(@user.id, review.id), method: :approve, data: {confirm: "Are you sure"} %>
+            <%= button_to 'Deny', user_review_path(@user.id, review.id), method: :deny, data: {confirm: "Are you sure"}  %>
         <% end %>
     <% end %>
     <%# orders %>
+    <p>Orders </p>
     <% @user.orders.each do |order| %>
-        <% if order.pending? %>
+        <% if (order.pending?) %>
             <%= order.body %>
             Created <%= time_ago_in_words(order.created_at) %> ago 
-            <%= button_to 'Accept',  user_order_path(@user.id, order.id), method: :accept, data: {confirm: "Are you sure"}
+            <%= button_to 'Accept',  user_order_path(@user.id, order.id), method: :accept, data: {confirm: "Are you sure"} %>
             <%= button_to 'Decline',  user_order_path(@user.id, order.id),method: :decline, data: {confirm: "Are you sure"} %>
         <% end %>
     <% end %>
+    <p>My Meals </p>
     <%# all meals/edit - here or just on cook show page with edit visible to just the cook? %>
     <% @user.meals.each do |meal| %>
-            <% if meal.pending? %>
+            <% if (meal.pending?) %>
                 <%= meal.body %>
                 Created <%= time_ago_in_words(meal.created_at) %> ago 
                 <% if can? :crud, meal%>
                     <%= button_to "Edit", edit_meal_path(@meal), method: :get %>%
                 <% end %>
             <% end %>
-
+    <% end %>
 <% else %>
     <%# for non-cooks %>
     <% if user_signed_in?%>
-    <h3>Pending Reviews <h3>
+        <h3>Pending Reviews <h3>
         <% @user.reviews.each do |review| %>
             <% if review.pending? %>
                 <%= review.body %>
@@ -40,17 +42,19 @@
                 <% if can? :crud, review %>
                     <%= button_to "Edit", edit_review_path(@review), method: :get %>%
                 <% end %>
-        <% end %>
-        <h3>Reviews <h3>
+            <% end %>
+        <% end %>  
+        <h3> Reviews <h3>
         <% @user.reviews.each do |review| %>
             <% if !review.pending? %>
                 <%= review.body %>
                 Created <%= time_ago_in_words(review.created_at) %> ago 
                 <% if review.approved? %>
-                <p style = "color: green"> Review Approved <p>
+                    <p style = "color: green"> Review Approved <p>
                 <% else %>
-                <p style = "color: red"> Review Denied <p>
-            <% end %>
+                    <p style = "color: red"> Review Denied <p>
+                <% end %>
+            <% end %>  
         <% end %>  
-    <% end %>  
+    <% end %> 
 <% end %>
