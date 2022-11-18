@@ -5,10 +5,9 @@ Rails.application.routes.draw do
   resources :users
   resource :session, only: [:new, :destroy, :create]
 
- 
-  resources :orders
   resources :recipes do
     resources :reviews, only: [:create, :destroy]
+    resources :orders, only: [:create, :destroy]
   end
 
   resources :ratings

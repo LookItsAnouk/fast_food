@@ -1,13 +1,13 @@
   <%# for cooks %>
 <% if user_signed_in? && @user.is_cook? %>
     <%# pending reviews %>
-    <h3>Pending Reviews - Cook <h3>
+    <h3>Pending Reviews <h3>
     <% @user.reviews.each do |review| %>
         <% if review.pending? %>
             <%= review.body %>
             Created <%= time_ago_in_words(review.created_at) %> ago 
-            <%= button_to 'Approve', user_review_path(@user.id, review.id), method: :approve, data: {confirm: "Are you sure"} %>
-            <%= button_to 'Deny', user_review_path(@user.id, review.id), method: :deny, data: {confirm: "Are you sure"}  %>
+            <%= button_to 'Approve', user_path(@user.id, review.id), method: :approve, data: {confirm: "Are you sure"} %>
+            <%= button_to 'Deny', user_path(@user.id, review.id), method: :deny, data: {confirm: "Are you sure"}  %>
         <% end %>
     <% end %>
     <%# orders %>
@@ -23,15 +23,13 @@
     <% end %>
     <p>My Meals </p>
     <%# all meals/edit - here or just on cook show page with edit visible to just the cook? %>
-    <p>Meals </p>
     <% @user.recipes.each do |r| %>
-                <%= r.description %>
-                <%= r.ingredients %>
-                Created <%= time_ago_in_words(r.created_at) %> ago 
-                <% if can? :crud, r%>
-                    <%= button_to "Edit", edit_recipe_path(@r.id), method: :get %>%
-                <% end %>
-             
+        <%= r.description %>
+        <%= r.ingredients %>
+        Created <%= time_ago_in_words(r.created_at) %> ago 
+        <% if can? :crud, r%>
+            <%= button_to "Edit", edit_recipe_path(r.id), method: :get %>%
+        <% end %>
     <% end %>
 <% else %>
     <%# for non-cooks %>
@@ -42,7 +40,7 @@
                 <%= review.body %>
                 Created <%= time_ago_in_words(review.created_at) %> ago 
                 <% if can? :crud, review %>
-                    <%= button_to "Edit", edit_review_path(@review), method: :get %>%
+                    <%= button_to "Edit", edit_review_path(@review), method: :get %>
                 <% end %>
             <% end %>
         <% end %>  
