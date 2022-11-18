@@ -24,6 +24,7 @@ class ReviewsController < ApplicationController
       # POST /orders
       def create
         @review = Review.new(review_params)
+        
         @review.recipe = @recipe
         @review.user = current_user
   

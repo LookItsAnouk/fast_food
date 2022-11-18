@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :authorize_user!, only:[:edit, :update, :destroy]
-
+  before_action :set_recipe, only: %i[ show edit update destroy ]
   # GET /orders
   def index
     @orders = Order.all
@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    
   end
 
   # GET /orders/1/edit
@@ -24,6 +25,8 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
+    @order.recipe = @recipe
+    @order.user = current_user
     if @order.save
       redirect_to order_url(@order), notice: "Order was successfully created." 
 
@@ -73,6 +76,10 @@ class OrdersController < ApplicationController
 
     def authorize_user!
       redirect_to root_path, alert: "Not authorized!" unless can?(:crud, @order)
+    end
+
+    def set_recipe
+      @recipe = Recipe.find(params[:id])
     end
 
    
