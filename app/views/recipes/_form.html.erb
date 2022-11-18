@@ -1,11 +1,11 @@
 
-<%= form_with(model: recipe) do |form| %>
-  <% if recipe.errors.any? %>
+<%= form_with model: @recipe, data:{ turbo:false } do |form| %>
+  <% if @recipe.errors.any? %>
     <div class="alert alert-danger">
-      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
 
       <ul>
-        <% recipe.errors.each do |error| %>
+        <% @recipe.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -13,26 +13,26 @@
   <% end %>
 
   <div class="form-outline mb-4">
-    <%= form.label :title, class:"form-control"%>
-    <%= form.text_field :title %>
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control form-control-lg" %>
   </div>
 
   <div class="form-outline mb-4">
-    <%= form.label :image_url, class:"form-control"%>
-    <%= form.text_area :image_url %>
+    <%= form.label :image_url %>
+    <%= form.text_area :image_url, class: "form-control form-control-lg" %>
   </div>
 
   <div class="form-outline mb-4">
-    <%= form.label :description, class:"form-control"%>
-    <%= form.text_area :description %>
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control form-control-lg" %>
   </div>
 
   <div class="form-outline mb-4">
-    <%= form.label :ingredients, class:"form-control"%>
-    <%= form.text_area :ingredients %>
+    <%= form.label :ingredients  %>
+    <%= form.text_area :ingredients, class: "form-control form-control-lg" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-outline-dark btn-lg btn-block" %>
   </div>
 <% end %>

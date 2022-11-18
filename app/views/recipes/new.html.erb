@@ -1,10 +1,13 @@
-<section class="" style="background: url(https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
-            <h3 class="text-uppercase text-center mb-3">Create a Meal</h3>
+<section class="bg-image"
+  style="background-image: url('https://th.bing.com/th/id/OIP.d6s9jZ3ee_EC5de2WcqPwwHaE8?pid=ImgDet&rs=1');" >
+<div class="mask d-flex align-items-center h-100 gradient-custom-3 pb-0">
+    <div class="container h-100 pb-0">
+      <div class="container row d-flex justify-content-center align-items-center h-100 pb-0">
+        <div class="container col-12 col-md-9 col-lg-7 col-xl-6 pb-0">
+          <div class="card m-4" style="">
+            <div class="card-body px-5 pt-5">
+               
+             <h2 class="text-uppercase text-center mb-5">Create a Meal</h2>
                 <%= render "form", recipe: @recipe %>
                 </div>
           </div>
@@ -16,6 +19,7 @@
 
 <br>
 
-<div>
-  <%= link_to "Back to recipes", recipes_path %>
+<div class="d-flex justify-content-center my-4">
+  <a class="btn btn-dark text-uppercase p-3" href="<%= recipes_path %>"id="sign-up-btn">return to recipes</a>
 </div>
+
