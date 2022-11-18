@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :find_recipe, only: [:show, :edit, :update, :destroy]
   before_action :set_recipe, only: %i[ show edit update destroy ]
 
   # GET /recipes
@@ -59,4 +60,9 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:title, :description, :ingredients)
   end
+
+  def find_recipe
+    @recipe = Recipe.find params[:id]
+  end
 end
+
