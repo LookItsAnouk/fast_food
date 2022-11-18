@@ -1,14 +1,28 @@
+
+
 <p style="color: green"><%= notice %></p>
+
+
+<p>indexing cooks</p>
+<%#= render @users %>
+ <%#= if @users.is_cook? %>
+  <%#= @user.first_name %>
+<%# end %>
+
 
 <h1>Users</h1>
 
 <div id="users">
   <% @users.each do |user| %>
-    <%= render user %>
+    <%#= render @users %>
+    <% if user.is_cook? %>
+       <%= user.first_name %>
     <p>
       <%= link_to "Show this user", user %>
     </p>
+  
+    <% end %>
   <% end %>
 </div>
 
-<%= link_to "New user", new_user_path %>
+  <%= link_to "Back to users", users_path %>

@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   #resources :user_signed_in
-  resources :users
+  resources :users do
+    resources :cooks
+  end
+
   resource :session, only: [:new, :destroy, :create]
 
   resources :recipes do
