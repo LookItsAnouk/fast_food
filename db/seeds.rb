@@ -1,27 +1,21 @@
+User.destroy_all
 Recipe.destroy_all
 Review.destroy_all
-# Rating.destroy_all
+Rating.destroy_all
 Order.destroy_all
-User.destroy_all
+
 
 
 recipes = Recipe.all
 reviews = Review.all
-# ratings = Rating.all
+ratings = Rating.all
 orders = Order.all
 users = User.all
+cooks = Cook.all
 
-# Ratings
-
-# ---------------------------------------------
-
-
-
-# Users
+# Users and Ratings
 
  PASSWORD = '123456789'
-
-
 
 30.times do
 
@@ -31,7 +25,7 @@ users = User.all
     phone = Faker::PhoneNumber.cell_phone
     
 
-    User.create(
+     User.create(
         first_name: first_name,
         last_name: last_name,
         address: address,
@@ -39,10 +33,8 @@ users = User.all
         email: "#{first_name}@#{last_name}.com",
         password: PASSWORD,
         is_cook?: false
-
     )
     
-
 end
 
 20.times do
@@ -53,7 +45,7 @@ end
     phone = Faker::PhoneNumber.cell_phone
     
 
-    User.create(
+    cook = User.create(
         first_name: first_name,
         last_name: last_name,
         address: address,
@@ -63,11 +55,35 @@ end
         is_cook?: true
     )
     
+    if cook.valid?
+        created_at = Faker::Date.between(from: 5.days.ago, to: Date.today)
+        c = Cook.create(
+            user_id: cook.id,
+            created_at: created_at,
+            updated_at: created_at
+        )
+        if c.valid?
+            rand(1..5) do
+                score = rand(1..5)
+                user = users.sample
+                created_at = Faker::Date.between(from: 5.days.ago, to: Date.today)
+
+                r = Rating.create(
+                    rating: score,
+                    user_id: user.id,
+                    created_at: created_at,
+                    updated_at: updated_at,
+                    cooks_id: c.id
+                )
+                puts r.errors.full_messages
+            end
+        end
+    end
 end
 
 # ---------------------------------------------
 
-# Recipes and Reviews
+# Recipes, Reviews and Orders
 
 50.times do
 
@@ -113,16 +129,10 @@ r = Recipe.create(
 
 end
 
-# ---------------------------------------------
-
-# Orders
-
-
-
-# ---------------------------------------------
 
 puts Cowsay.say("Generated #{recipes.count} recipes.", :elephant)
 puts Cowsay.say("Generated #{reviews.count} reviews.", :frogs)
-# puts Cowsay.say("Generated #{ratings.count} users.", :dragon)
+puts Cowsay.say("Generated #{cooks.count} cooks.", :dragon)
+puts Cowsay.say("Generated #{ratings.count} ratings.", :cow)
 puts Cowsay.say("Generated #{orders.count} orders.", :Kitty)
 puts Cowsay.say("Generated #{users.count} users.", :Koala)
