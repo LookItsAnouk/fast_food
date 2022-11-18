@@ -50,7 +50,7 @@ super_user = User.create(
         email: "#{first_name}@#{last_name}.com",
 
         password: PASSWORD,
-        is_cook?: false
+        is_cook: false
     )
     
 end
@@ -139,8 +139,8 @@ r = Recipe.create(
                 updated_at: created_at,
                 user: users.sample,
                 recipe: r,
-                pending?: false,
-                approved?: true
+                pending: false,
+                approved: true
             )
         end
     end

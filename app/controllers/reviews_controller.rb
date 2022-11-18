@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
     before_action :set_review, only: %i[ show edit update destroy ]
     before_action :authenticate_user!, except: [:index, :show]
     before_action :authorize_user!, only:[:edit, :update, :destroy]
+    before_action :find_recipe
 
     def index
         @reviews = Review.all
@@ -22,9 +23,11 @@ class ReviewsController < ApplicationController
     
       # POST /orders
       def create
+        @review.recipe = @recipe
+        @review.user = current_user
         @review = Review.new(review_params)
         if @review.save
-          redirect_to order_url(@review), notice: "review was successfully created." 
+          redirect_to review_url(@review), notice: "review was successfully created." 
     
         else
           render :new, status: :unprocessable_entity 
@@ -62,10 +65,14 @@ private
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:title, :body)
+      params.require(:review).permit(:body)
     end
    
     def authorize_user!
       redirect_to root_path, alert: "Not authorized!" unless can?(:crud, @review)
     end
+
+    def find_recipe
+      @recipe = Recipe.find params[:recipe_id]
+  end
 end

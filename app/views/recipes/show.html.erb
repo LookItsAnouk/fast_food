@@ -2,9 +2,25 @@
 
 <%= render @recipe %>
 
-<div>
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
-  <%= link_to "Back to recipes", recipes_path %>
+<% @recipe.reviews.each do |review| %>
+    <%= review.body %>
+    <p>Created <%= time_ago_in_words(review.created_at) %> ago 
+<% end %>
 
-  <%= button_to "Destroy this recipe", @recipe, method: :delete %>
+<%#= @review.errors.full_messages.join(', ') %>
+
+<% if user_signed_in? %>
+  <%= form_for [@recipes, @review] do |f| %>
+      <%= f.text_area :body %>
+      <br>
+      <%= f.submit %>
+  <% end %>
+
+<div>
+  <% if can? :crud, review %>
+    <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
+    <%#= link_to "Back to recipes", recipes_path %>
+  <%#= button_to "Destroy this recipe", @recipe, method: :delete %>
+  <% end %>
+<% end %>
 </div>
