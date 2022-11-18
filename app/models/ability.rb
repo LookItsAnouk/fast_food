@@ -8,7 +8,8 @@ class Ability
 
     user ||= User.new #guest user (not logged in)
 
-    if user.admin?
+    #if user.admin? temp update as we do not have admin column in db yet
+    if user.present?
       can :manage, :all
     else
       can :read, :all
