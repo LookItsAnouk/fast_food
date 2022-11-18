@@ -46,7 +46,7 @@ super_user = User.create(
         phone: phone,
         email: "#{first_name}@#{last_name}.com",
         password_digest: PASSWORD,
-        is_cook?: false
+        is_cook: false
 
     )
     
@@ -68,7 +68,7 @@ end
         phone: phone,
         email: "#{first_name}@#{last_name}.com",
         password_digest: PASSWORD,
-        is_cook?: true
+        is_cook: true
     )
     
 end

@@ -1,5 +1,5 @@
   <%# for cooks %>
-<% if user_signed_in? && user.is_cook? %>
+<% if user_signed_in? && @user.is_cook? %>
     <%# pending reviews %>
     <h3>Pending Reviews <h3>
     <% @user.reviews.each do |review| %>
@@ -15,7 +15,7 @@
         <% if order.pending? %>
             <%= order.body %>
             Created <%= time_ago_in_words(order.created_at) %> ago 
-            <%= button_to 'Accept',  user_order_path(@user.id, order.id), method: :accept, data: {confirm: "Are you sure"}
+            <%= button_to 'Accept',  user_order_path(@user.id, order.id), method: :accept, data: {confirm: "Are you sure"}  %>
             <%= button_to 'Decline',  user_order_path(@user.id, order.id),method: :decline, data: {confirm: "Are you sure"} %>
         <% end %>
     <% end %>
@@ -28,7 +28,7 @@
                     <%= button_to "Edit", edit_meal_path(@meal), method: :get %>%
                 <% end %>
             <% end %>
-
+    <% end %>
 <% else %>
     <%# for non-cooks %>
     <% if user_signed_in?%>
@@ -40,17 +40,19 @@
                 <% if can? :crud, review %>
                     <%= button_to "Edit", edit_review_path(@review), method: :get %>%
                 <% end %>
-        <% end %>
+            <% end %>
+        <% end %>  
         <h3>Reviews <h3>
         <% @user.reviews.each do |review| %>
             <% if !review.pending? %>
                 <%= review.body %>
                 Created <%= time_ago_in_words(review.created_at) %> ago 
                 <% if review.approved? %>
-                <p style = "color: green"> Review Approved <p>
+                    <p style = "color: green"> Review Approved <p>
                 <% else %>
-                <p style = "color: red"> Review Denied <p>
-            <% end %>
+                    <p style = "color: red"> Review Denied <p>
+                <% end %>
+            <% end %>  
         <% end %>  
-    <% end %>  
+     <% end %> 
 <% end %>
