@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = current_user
+    @recipes = @user.recipes
     #redirect_to 
   end
 
@@ -30,15 +31,6 @@ class UsersController < ApplicationController
      @user = current_user
   end
 
-  # # POST /users
-  # def create
-  #   @user = User.new(user_params)
-  #     if @user.save
-  #       redirect_to user_url(@user), notice: "User was successfully created." 
-  #     else
-  #       render :new, status: :unprocessable_entity 
-  #     end
-  # end
 
 #If that above gives errors, try the below:
   def create

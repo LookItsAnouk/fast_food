@@ -33,8 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_194533) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.bigint "recipe_id", null: false
-    t.boolean "pending"
-    t.boolean "approved"
+    t.boolean "pending", default: "true"
+    t.boolean "approved", default: "false"
     t.index ["recipe_id"], name: "index_orders_on_recipe_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -62,8 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_194533) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.boolean "pending"
-    t.boolean "approved"
+    t.boolean "pending", default: "true"
+    t.boolean "approved", default: "false"
     t.bigint "user_id", null: false
     t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false

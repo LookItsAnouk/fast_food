@@ -17,7 +17,9 @@
           <h2 class="card-title"><strong><%= @recipe.title %></strong></h2>
           <small>Created by Chef <%= @recipe.user.last_name %></small>
           <div class="mb-3"><%= @recipe.description %></div>
-            <a href="<%=order_path %>" class="btn btn-secondary">Order Now</a>
+
+            <a href="<%=recipe_orders_path(@recipe, @user) %>" class="btn btn-secondary">Order Now</a>
+
           </div>
         </div>
       </div>
