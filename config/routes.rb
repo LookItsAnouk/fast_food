@@ -7,12 +7,17 @@ Rails.application.routes.draw do
 
  
   resources :orders
-  resources :recipes
+  resources :recipes do
+    resources :reviews, only: [:create, :destroy]
+  end
+
+  resources :ratings
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   get 'users/:id/dashboard', to: 'users#dashboard', as: :dashboard_user
 
-
+  get 'search', to: 'searches#show'
 
 end

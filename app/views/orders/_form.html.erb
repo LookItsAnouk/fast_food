@@ -1,4 +1,12 @@
-<%= form_with(model: order) do |form| %>
+<section class="bg-image"
+  style="background-image: url('https://thumbs.dreamstime.com/b/hands-credit-card-payment-terminal-restaurant-food-delivery-pay-201659378.jpg');" >
+<div class="mask d-flex align-items-center h-100 gradient-custom-3 pb-0">
+    <div class="container h-100 pb-0">
+      <div class="container row d-flex justify-content-center align-items-center h-100 pb-0">
+        <div class="container col-12 col-md-9 col-lg-7 col-xl-6 pb-0">
+          <div class="card m-4" style="">
+            <div class="card-body px-5 pt-5">
+
   <% if order.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -11,22 +19,35 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :payment_type, style: "display: block" %>
-    <%= form.text_field :payment_type %>
+  <div class="form-outline mb-4">
+
+  <%= form_with(model: order) do |form| %>
+
+  <div class="form-outline mb-4">
+    <%= form.label :payment_type, class: "form-label" %>
+    <%= form.text_field :payment_type, class: "form-control form-control-lg" %>
   </div>
 
-  <div>
-    <%= form.label :delivery_type, style: "display: block" %>
-    <%= form.text_field :delivery_type %>
+  <div class="form-outline mb-4">
+    <%= form.label :delivery_type, class: "form-label" %>
+    <%= form.text_field :delivery_type, class: "form-control form-control-lg" %>
   </div>
 
-  <div>
-    <%= form.label :delivery_date, style: "display: block" %>
-    <%= form.datetime_field :delivery_date %>
+  <div class="form-outline mb-4">
+    <%= form.label :delivery_date, class: "form-label" %>
+    <%= form.datetime_field :delivery_date, class: "form-control form-control-lg" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="d-flex justify-content-center">
+    <%= form.submit class: "btn btn-outline-dark mb-3 text-center" %>
   </div>
 <% end %>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

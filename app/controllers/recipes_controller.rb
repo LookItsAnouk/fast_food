@@ -1,13 +1,16 @@
 class RecipesController < ApplicationController
+  before_action :find_recipe, only: [:show, :edit, :update, :destroy]
   before_action :set_recipe, only: %i[ show edit update destroy ]
 
   # GET /recipes
   def index
     @recipes = Recipe.all
+    @review = Review.new
   end
 
   # GET /recipes/1
   def show
+    @review = Review.new
   end
 
   # GET /recipes/new
@@ -23,7 +26,8 @@ class RecipesController < ApplicationController
   # POST /recipes
   def create
     @recipe = Recipe.new(recipe_params)
-     @recipe.user = current_user
+    @recipe.user = current_user
+
     if @recipe.save
       redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." 
     else
@@ -56,4 +60,9 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:title, :description, :ingredients)
   end
+
+  def find_recipe
+    @recipe = Recipe.find params[:id]
+  end
 end
+

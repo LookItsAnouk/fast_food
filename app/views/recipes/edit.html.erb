@@ -1,10 +1,23 @@
-<h1>Editing recipe</h1>
+<section class="" style="background: url(https://images.pexels.com/photos/511763/pexels-photo-511763.jpeg?cs=srgb&dl=pexels-pixabay-511763.jpg&fm=jpg);">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+                <h2 class="text-uppercase text-center mb-3">Edit Meal</h2>
+                
+                <%= render "form" %>
 
-<%= render "form", recipe: @recipe %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <br>
 
-<div>
-  <%= link_to "Show this recipe", @recipe %> |
-  <%= link_to "Back to recipes", recipes_path %>
+<div class="d-flex justify-content-center my-4">
+  <a class="btn btn-dark text-uppercase p-3" href="<%= @recipe %>"id="sign-up-btn">Show this recipe</a> |
+  <a class="btn btn-dark text-uppercase p-3" href="<%= recipes_path %>"id="sign-up-btn">return to recipes</a>
 </div>
