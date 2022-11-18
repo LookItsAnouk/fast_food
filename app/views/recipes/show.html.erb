@@ -6,7 +6,9 @@
             <div class="col-md-6 col-lg-4">
                 <div class="p-3 p-md-4 p-lg-6 pe-md-0">
                   <div class="show-image-container ">
-                <%= image_tag @recipe.image_url, class:"show-image img-fluid" %>
+                  <% if @recipe.image_url %>
+                    <%= image_tag @recipe.image_url, class:"show-image img-fluid" %>
+                  <% end %>
                  </div>
                 </div>
             </div>
@@ -21,10 +23,10 @@
     <p>Created <%= time_ago_in_words(review.created_at) %> ago 
 <% end %>
 
-<%#= @review.errors.full_messages.join(', ') %>
+<%= @review.errors.full_messages.join(', ') %>
 
 <% if user_signed_in? %>
-  <%= form_for [@recipes, @review] do |f| %>
+  <%= form_for [@recipe, @review] do |f| %>
       <%= f.text_area :body %>
       <br>
       <%= f.submit %>
@@ -45,7 +47,7 @@
 
   <%= button_to "Destroy this recipe", recipe_path(@recipe), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-dark text-uppercase p-3" %>
   
-  <% if can? :crud, review %>
+  <% if can? :crud, @review %>
     <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
     <%#= link_to "Back to recipes", recipes_path %>
   <%#= button_to "Destroy this recipe", @recipe, method: :delete %>

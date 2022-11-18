@@ -7,8 +7,10 @@ Rails.application.routes.draw do
 
  
   resources :orders
-  resources :recipes
-  resources :reviews
+  resources :recipes do
+    resources :reviews, only: [:create, :destroy]
+  end
+
   resources :ratings
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

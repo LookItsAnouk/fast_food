@@ -13,9 +13,9 @@ class ReviewsController < ApplicationController
       end
     
       # GET /orders/new
-      def new
-        @review = Review.new
-      end
+      # def new
+      #   @review = Review.new
+      # end
     
       # GET /orders/1/edit
       def edit
@@ -23,13 +23,16 @@ class ReviewsController < ApplicationController
     
       # POST /orders
       def create
+        @review = Review.new(review_params)
         @review.recipe = @recipe
         @review.user = current_user
-        @review = Review.new(review_params)
+  
         if @review.save
-          redirect_to review_url(@review), notice: "review was successfully created." 
+          flash[:success] = "Review successfully created"
+          redirect_to recipe_url(@recipe), notice: "review was successfully created." 
     
         else
+          flash[:alert] = "Please Add Text"
           render :new, status: :unprocessable_entity 
         end
       end
