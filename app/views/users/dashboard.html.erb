@@ -1,25 +1,27 @@
   <%# for cooks %>
 <% if user_signed_in? && @user.is_cook? %>
     <%# pending reviews %>
-    <h3>Pending Reviews <h3>
+    <h3>Pending Reviews - Cook <h3>
     <% @user.reviews.each do |review| %>
         <% if review.pending? %>
             <%= review.body %>
             Created <%= time_ago_in_words(review.created_at) %> ago 
-            <%= button_to 'Approve',  user_review_path(@user.id, review.id), method: :approve, data: {confirm: "Are you sure"} %>
-            <%= button_to 'Deny',  user_review_path(@user.id, review.id), method: :deny, data: {confirm: "Are you sure"}  %>
+            <%= button_to 'Approve', user_review_path(@user.id, review.id), method: :approve, data: {confirm: "Are you sure"} %>
+            <%= button_to 'Deny', user_review_path(@user.id, review.id), method: :deny, data: {confirm: "Are you sure"}  %>
         <% end %>
     <% end %>
     <%# orders %>
     <p>Orders </p>
     <% @user.orders.each do |order| %>
-        <% if order.pending? %>
+        <% if (order.pending?) %>
             <%= order.body %>
             Created <%= time_ago_in_words(order.created_at) %> ago 
             <%= button_to 'Accept',  user_order_path(@user.id, order.id), method: :accept, data: {confirm: "Are you sure"}  %>
+
             <%= button_to 'Decline',  user_order_path(@user.id, order.id),method: :decline, data: {confirm: "Are you sure"} %>
         <% end %>
     <% end %>
+    <p>My Meals </p>
     <%# all meals/edit - here or just on cook show page with edit visible to just the cook? %>
     <p>Meals </p>
     <% @user.recipes.each do |r| %>
@@ -34,7 +36,7 @@
 <% else %>
     <%# for non-cooks %>
     <% if user_signed_in?%>
-    <h3>Pending Reviews <h3>
+        <h3>Pending Reviews <h3>
         <% @user.reviews.each do |review| %>
             <% if review.pending? %>
                 <%= review.body %>
@@ -45,6 +47,7 @@
             <% end %>
         <% end %>  
         <h3>Reviews <h3>
+
         <% @user.reviews.each do |review| %>
             <% if !review.pending? %>
                 <%= review.body %>
@@ -56,5 +59,7 @@
                 <% end %>
             <% end %>  
         <% end %>  
+
      <% end %> 
+
 <% end %>
