@@ -14,12 +14,7 @@ class Ability
       can :read, :all
     end
 
-    #
-    #   return unless user.present?
-    #   can :read, :all
-    #   return unless user.admin?
-    #   can :manage, :all
-    #
+    
     # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
@@ -43,10 +38,10 @@ class Ability
 
     alias_action :create, :read, :update, :delete, :to => :crud
 
+
     can :crud, Order do |order|
       user == order.user
     end
-  
 
     can :crud, Rating do |rating|
       user == rating.user #|| answer.question.user
@@ -60,13 +55,13 @@ class Ability
       user == recipe.user
     end
 
-    can :like, Rating do |rating| #maybe should be |recipe| instead?
+    can :create, Rating do |rating| #maybe should be |recipe| instead?
       user.persisted? && recipe.user != user
       #checks if the user is in the database
       #does not allow the recipe owner to like their own recipe
     end
 
-    can :like, Review do |review| #maybe should be |recipe| instead?
+    can :create, Review do |review| #maybe should be |recipe| instead?
       user.persisted? && recipe.user != user
       #checks if the user is in the database
       #does not allow the recipe owner to like their own recipe
@@ -81,8 +76,6 @@ class Ability
       review.user == user || recipe.user
     end
 
-    #IMPORTANT!!! We are defining the rules in ability.rb but we are not enforcing it yet
-    #You will have to enforce the rules yourself in the views and controllers where applicable
 
   end
 end
