@@ -11,19 +11,21 @@
 
             <div class="form-outline mb-4">
 
-            <%= form_with(model: user) do |form| %>
+            <h1>Sign In</h1>
 
-            <div class="form-outline mb-4">
-              <%= form.label :email, class: "form-label" %>
-              <%= form.text_field :email, class: "form-control form-control-lg" %>
-            </div>
-
-            <div class="form-outline mb-4">
-              <%= form.label :password, class: "form-label" %>
-              <%= form.password_field :password, class: "form-control form-control-lg" %>
-            </div>
-            <%= form.submit 'Sign In', class:"btn btn-outline-dark btn-lg btn-block"%>
-          <% end %>
+            <%= form_tag session_path do %>
+              <div>
+                <%= label_tag :email %>
+                <%= email_field_tag :email %>
+              </div>
+              <div>
+                <%= label_tag :password %>
+                <%= password_field_tag :password %>
+              </div>
+              <div>
+                <%= submit_tag "Log In" %>
+              </div>
+            <% end %>
 
           </div>
         </div>
