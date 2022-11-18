@@ -9,6 +9,9 @@ gem "rails", "~> 7.0.4"
 
 gem "faker"
 
+#authorization
+
+
 #auth
 # gem 'devise', '~> 4.8', '>= 4.8.1'
 
