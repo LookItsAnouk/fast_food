@@ -1,20 +1,24 @@
-User.destroy_all
+
 Recipe.destroy_all
 Review.destroy_all
 Rating.destroy_all
 Order.destroy_all
 Cook.destroy_all
+User.destroy_all
 
+users = User.all
 
-
- PASSWORD = '123456789'
+PASSWORD = '123456789'
  
 super_user = User.create(
     first_name: "Admin",
     last_name: "User",
     email: "admin@admin.com",
-    password: PASSWORD
+    password: PASSWORD,
+    is_cook: true
+   
  )
+
 
 30.times do
 
@@ -22,67 +26,44 @@ super_user = User.create(
     last_name = Faker::Name.last_name
     address = Faker::Address.full_address
     phone = Faker::PhoneNumber.cell_phone
+    boo = [true, false]
     
 
-     User.create(
+    u = User.create(
         first_name: first_name,
         last_name: last_name,
         address: address,
         phone: phone,
         email: "#{first_name}@#{last_name}.com",
         password: PASSWORD,
-        is_cook: false
+        is_cook: boo.sample
     )
     
-end
-
-users = User.all
-
-10.times do
-
-    first_name = Faker::Name.first_name
-    last_name = Faker::Name.last_name
-    address = Faker::Address.full_address
-    phone = Faker::PhoneNumber.cell_phone
-    
-
-    cook = User.create(
-        first_name: first_name,
-        last_name: last_name,
-        address: address,
-        phone: phone,
-        email: "#{first_name}@#{last_name}.com",
-        password_digest: PASSWORD,
-        is_cook: true
-    )
-    
-    if cook.valid?
+    if u.is_cook == true
         created_at = Faker::Date.between(from: 5.days.ago, to: Date.today)
         c = Cook.create(
-            user_id: cook.id,
+            user_id: u.id,
             created_at: created_at,
             updated_at: created_at
         )
-        # if c.valid?
-        #     rand(1..5) do
-        #         score = rand(1..5)
-        #         user = users.sample
-        #         created_at = Faker::Date.between(from: 5.days.ago, to: Date.today)
+        if c.valid?
+                score = rand(1..5)
+                user = users.sample
+                created_at = Faker::Date.between(from: 5.days.ago, to: Date.today)
 
-        #         r = Rating.create(
-        #             rating: score,
-        #             user_id: user.id,
-        #             created_at: created_at,
-        #             updated_at: updated_at,
-        #             cook_id: c.id
-        #         )
-        #         puts r.errors.full_messages
-        #     end
-        # end
+                r = Rating.create(
+                    rating: score,
+                    user_id: user.id,
+                    created_at: created_at,
+                    updated_at: created_at,
+                    cook_id: c.id
+                )
+                puts r.errors.full_messages
+        end
     end
 end
 cooks = Cook.all
-# ratings = Rating.all
+ratings = Rating.all
 # ---------------------------------------------
 
 # Recipes, Reviews and Orders
@@ -138,6 +119,6 @@ reviews = Review.all
 puts Cowsay.say("Generated #{recipes.count} recipes.", :elephant)
 puts Cowsay.say("Generated #{reviews.count} reviews.", :frogs)
 puts Cowsay.say("Generated #{cooks.count} cooks.", :dragon)
-#puts Cowsay.say("Generated #{ratings.count} ratings.", :cow)
+puts Cowsay.say("Generated #{ratings.count} ratings.", :cow)
 puts Cowsay.say("Generated #{orders.count} orders.", :Kitty)
 puts Cowsay.say("Generated #{users.count} users.", :Koala)
