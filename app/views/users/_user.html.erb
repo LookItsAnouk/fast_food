@@ -1,4 +1,12 @@
 <div id="<%= dom_id user %>">
+
+  <p>
+    <%if user.is_cook? %>
+    <strong>Chef Account</strong>
+    <% else %>
+    <strong>Account</strong>
+    <% end %>
+  </p>
   <p>
     <strong>First name:</strong>
     <%= user.first_name %>
@@ -15,11 +23,6 @@
   </p>
 
   <p>
-    <strong>Password:</strong>
-    <%= user.password_digest %>
-  </p>
-
-  <p>
     <strong>Address:</strong>
     <%= user.address %>
   </p>
@@ -29,9 +32,5 @@
     <%= user.phone %>
   </p>
 
-  <p>
-    <strong>Check this box if you are a chef who will be uploading meals</strong>
-    <%= user.is_cook? %>
-  </p>
 
 </div>
