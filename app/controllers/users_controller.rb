@@ -11,6 +11,11 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def dashboard
+    @user = current_user
+    #redirect_to 
+  end
+
   # GET /users/new
   def new
     @user = User.new
