@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_194533) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "cook_id", null: false
+    t.bigint "cook_id" #null: false
     t.index ["cook_id"], name: "index_ratings_on_cook_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end

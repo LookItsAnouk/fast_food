@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   get 'users/:id/dashboard', to: 'users#dashboard', as: :dashboard_user
 
+  get 'users/:id/cooks', to: 'users#cooks', as: :cooks_user
+
   patch 'users/:id/review/:id/approve', to: 'users#approve', as: :approve
 
   get 'search', to: 'searches#show'

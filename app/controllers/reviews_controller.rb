@@ -44,13 +44,13 @@ class ReviewsController < ApplicationController
         if can? :crud, @review
           if @review.update(review_params)
           redirect_to review_url(@review), notice: "review was successfully updated." 
-        else
-          redirect_to review_url(@review), notice: "Not authorized to edit this review" 
-
           else
+          redirect_to review_url(@review), notice: "Not authorized to edit this review" 
+          end
+        else
             render :edit, status: :unprocessable_entity 
         end
-          end
+          
       end
 
     def accept
