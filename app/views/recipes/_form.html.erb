@@ -1,0 +1,38 @@
+
+<%= form_with model: @recipe, data:{ turbo:false } do |form| %>
+  <% if @recipe.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+        <% @recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-outline mb-4">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :image_url %>
+    <%= form.text_area :image_url, class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :ingredients  %>
+    <%= form.text_area :ingredients, class: "form-control form-control-lg" %>
+  </div>
+
+  <div>
+    <%= form.submit%>
+  </div>
+<% end %>

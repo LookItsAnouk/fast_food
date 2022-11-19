@@ -6,6 +6,16 @@ ruby "3.0.0"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
+
+gem "faker"
+
+#authorization
+
+gem 'cancancan'
+
+#auth
+# gem 'devise', '~> 4.8', '>= 4.8.1'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -34,13 +44,15 @@ gem "jbuilder"
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+
+gem "ransack", "~> 3.2"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -59,6 +71,8 @@ group :development do
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
+
+  gem 'cowsay', '~> 0.3.0'
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"

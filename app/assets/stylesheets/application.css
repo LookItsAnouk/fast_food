@@ -13,3 +13,143 @@
  *= require_tree .
  *= require_self
  */
+
+ * {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+ }
+ #logo, #logo-footer {
+   width: 3rem !important;
+}
+
+.masthead {
+   background-size: cover;
+   min-height: 60vh;
+   position: relative;
+   color: white;
+   text-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
+}
+
+.color-overlay {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, .2);
+}
+
+@media (max-width: 768px) {
+   .masthead {
+      min-height: 30vh;
+   }
+   h1 {
+      font-size: calc(1.525rem + 3.3vw);
+   }
+}
+
+ a {
+    text-decoration: none
+ }
+ 
+ #search-bar {
+    width: 5em;
+ }
+ 
+ .carousel-item > img {
+    width: 10rem
+ }
+ 
+ .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+ }
+ 
+ .item-container {
+    margin-right: 1em;
+ }
+ 
+ 
+ .index-card {
+    width: 18rem;
+ }
+
+ .notifications.row{
+    margin: 3em;
+ }
+ 
+ .heading.clearfix{
+    text-align: center;
+ }
+ 
+ 
+ .pull-xs-right{
+    display: none;
+ }
+ 
+ .notification-group{
+    display: flex-wrap;
+    flex-direction: row;
+ }
+ 
+ .group-title{
+    display: none;
+ }
+ 
+ .notification-post{
+    display: inline-grid;
+    margin-top: 3em;
+    margin-right: 3em;
+    padding: 1em;
+    width: 18rem;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+ }
+ 
+ .my-card {
+    height: 20em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 0ch;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    
+ }
+ 
+ .my-card-img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    opacity: 70%;
+    
+ 
+ }
+ 
+ .cook-card-title{
+    font-size: 2em;
+    font-weight:bolder;
+ }
+ 
+ .index-cooks-container {
+    background-color: #F5BD23;
+    border-radius: 2em;
+    height: fit-content;
+    padding: 2em;
+ }
+ 
+ .top-title{
+    font-size: 1.8em;
+    margin-bottom: 1em;
+   
+ }
+ 
+ .float-text {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+ }
+ 
+ .no-hover:hover {
+    color: white;
+    background-color: black !important;
+ }

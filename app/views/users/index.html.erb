@@ -1,0 +1,44 @@
+
+
+<p style="color: green"><%= notice %></p>
+
+<%#= render @users %>
+ <%#= if @users.is_cook? %>
+  <%#= @user.first_name %>
+<%# end %>
+
+
+<h1>Users</h1>
+
+
+<div id="users">
+
+<div class="flex-container col-16  d-flex justify-content-center m-0">
+
+  <% @users.each do |user| %>
+
+  <div class="item-container m-3">
+            
+          <div class="card m3 index-card h-100">
+    <%#= render @users %>
+    <% if user.is_cook? %>
+       <%= user.first_name %>
+      <% end %>
+       <div class="card-body">
+          <div class="mb-1 d-flex justify-content-center">
+    <p>
+      <%= link_to "Show this user", user, class:"card-title mt-2 title-list-item text-dark fw-bold" %>
+    </p>
+    </div>
+
+    </div>
+        </div>
+        
+      </div>
+  
+    
+  <% end %>
+</div>
+</div>
+
+  <%= link_to "Back to users", users_path, class:"btn btn-outline-dark btn-lg btn-block" %>

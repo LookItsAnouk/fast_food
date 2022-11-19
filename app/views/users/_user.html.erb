@@ -1,0 +1,36 @@
+<div id="<%= dom_id user %>">
+
+  <p>
+    <%if user.is_cook? %>
+    <strong>Chef Account</strong>
+    <% else %>
+    <strong>Account</strong>
+    <% end %>
+  </p>
+  <p>
+    <strong>First name:</strong>
+    <%= user.first_name %>
+  </p>
+
+  <p>
+    <strong>Last name:</strong>
+    <%= user.last_name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= user.email %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= user.address %>
+  </p>
+
+  <p>
+    <strong>Phone:</strong>
+    <%= user.phone %>
+  </p>
+
+
+</div>

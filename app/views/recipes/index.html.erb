@@ -1,0 +1,39 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Recipes</h1>
+
+<div id="recipes">
+  
+<div class="flex-container col-16  d-flex justify-content-center m-0">
+
+  <% @recipes.each do |recipe| %>
+  
+    
+      
+        <div class="item-container m-3">
+            
+          <div class="card m3 index-card h-100">
+          <% if recipe.image_url %>
+            <%= image_tag recipe.image_url, class:"show-image img-fluid" %>
+          <% end %>
+          <div class="card-body">
+          <div class="mb-1 d-flex justify-content-center">
+            <h4><%= link_to recipe.title, recipe_path(recipe), class:"card-title mt-2 title-list-item text-dark fw-bold"%></h4>
+            </div>
+            <div>
+             <%= recipe.description %>
+             </div>
+          </div>
+        </div>
+        
+      </div>
+    
+  <% end %>
+</div>
+</div>
+
+
+<%= link_to "New recipe", new_recipe_path %>
+
+
+   

@@ -1,0 +1,57 @@
+
+<p style="color: green"><%= notice %></p>
+<section class="" style="background: url(https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Y2hlZnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80);">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+<h2 class="text-uppercase text-center mb-3">Showing Cook</h2>
+
+<%= render @user %>
+
+<%# @ratings.each do |rating| %>
+
+    <%# if cook.user_id == @user %>
+    <p> Chef Rating: 5 </p>
+     <%#= @rating.user_id %>
+    <br>
+    <%# end %>
+  <%# end %>
+
+
+  <% @recipes.each do |recipe| %>
+
+    <% if recipe.user == @user%>
+     <%= render recipe %>
+
+      <small>
+        Created by Chef <%= recipe.user.last_name %>
+      </small>
+
+    <br>
+    <% end %>
+  <% end %>
+
+<div>
+  <%= link_to "Back to Chefs", users_path %>
+
+
+
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="d-flex justify-content-center my-4">
+  <a class="btn btn-dark text-uppercase p-3" href="<%= edit_user_path(@user) %>"id="sign-up-btn">Edit the user</a> |
+  <a class="btn btn-dark text-uppercase p-3" href="<%= users_path %>"id="sign-up-btn">return to users</a>
+</div>
+
+
+
